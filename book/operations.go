@@ -8,6 +8,24 @@ import (
 	"github.com/gocarina/gocsv"
 )
 
+// Initializes a Book structure with all the contacts
+func New() Book {
+	file, err := os.OpenFile("book.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	if err != nil {
+		panic(err)
+	}
+
+	var contacts []*contact.Contact
+
+	if err := gocsv.UnmarshalFile(file, &contacts); err != nil {
+		panic(err)
+	}
+
+	file.Close()
+
+	return Book{Contacts: contacts}
+}
+
 // Saves the address book into the file
 func (book Book) Save() {
 	err := os.Truncate("book.csv", 0)
@@ -20,6 +38,7 @@ func (book Book) Save() {
 	if err != nil {
 		panic(err)
 	}
+	file.Close()
 }
 
 // Creates a contact and adds it into the book

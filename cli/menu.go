@@ -49,4 +49,5 @@ func (instance Cli) Menu() {
 
 	println("Fermeture du carnet d'adresses")
 	instance.Book.Save()
+	instance.Reader.Close()
 }
