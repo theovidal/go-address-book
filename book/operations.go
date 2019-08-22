@@ -17,7 +17,7 @@ func (book Book) Save() {
 	}
 }
 
-func (book Book) CreateContact(reader *readline.Instance) {
+func (book *Book) CreateContact(reader *readline.Instance) {
 	promps := map[string]string{
 		"Nom": "",
 		"Adresse email": "",
