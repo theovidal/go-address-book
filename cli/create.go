@@ -1,9 +1,5 @@
 package cli
 
-import (
-	"fmt"
-)
-
 func (instance *Cli) Create() {
 	promps := map[string]string{
 		"Nom": "",
@@ -29,7 +25,6 @@ func (instance *Cli) Create() {
 		"Phone": promps["Numéro de téléphone"],
 	}
 	instance.Book.CreateContact(params)
-	fmt.Println(instance.Book.Contacts)
 
 	println("Contact ajouté")
 }

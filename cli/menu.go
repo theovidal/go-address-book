@@ -37,6 +37,8 @@ func (instance Cli) Menu() {
 			instance.List()
 		case 2:
 			instance.Create()
+		case 4:
+			instance.Delete()
 		case 5:
 			quit = true
 		default:

@@ -9,8 +9,13 @@ import (
 )
 
 func (book Book) Save() {
+	err := os.Truncate("book.csv", 0)
+	if err != nil {
+		panic(err)
+	}
+
 	file, _ := os.OpenFile("book.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
-	err := gocsv.MarshalFile(&book.Contacts, file)
+	err = gocsv.MarshalFile(&book.Contacts, file)
 	if err != nil {
 		panic(err)
 	}
@@ -23,6 +28,11 @@ func (book *Book) CreateContact(params map[string]string) {
 		Address: params["Address"],
 		Phone: params["Phone"],
 	})
+}
+
+func (book *Book) DeleteContact(index int) {
+	index -= 1
+	book.Contacts = append(book.Contacts[:index], book.Contacts[index+1:]...)
 }
 
 func (book Book) ListAllContacts(withIndex bool) []string {
