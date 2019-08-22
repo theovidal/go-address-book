@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"github.com/chzyer/readline"
 	"strconv"
 )
 
@@ -23,19 +22,10 @@ func (instance Cli) Menu() {
 			println(index+1, ":", action)
 		}
 
-		reader, err := readline.New("--> ")
-		if err != nil {
-			panic(err)
-		}
-
-		instance.Reader.Refresh()
-
 		line, err := instance.Reader.Readline()
 		if err != nil {
 			panic(err)
 		}
-
-		reader.Close()
 
 		chosen, err := strconv.Atoi(line)
 		if err != nil {
@@ -44,9 +34,9 @@ func (instance Cli) Menu() {
 
 		switch chosen {
 		case 1:
-			instance.Book.ListAllContacts(false)
+			instance.List()
 		case 2:
-			instance.Book.CreateContact(instance.Reader)
+			instance.Create()
 		case 5:
 			quit = true
 		default:

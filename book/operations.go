@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/chzyer/readline"
 	"github.com/exybore/go-address-book/contact"
 	"github.com/gocarina/gocsv"
 )
@@ -17,35 +16,23 @@ func (book Book) Save() {
 	}
 }
 
-func (book *Book) CreateContact(reader *readline.Instance) {
-	promps := map[string]string{
-		"Nom": "",
-		"Adresse email": "",
-		"Adresse physique": "",
-		"Numéro de téléphone": "",
-	}
-	println("Ajout d'un nouveau contact :")
-	for field, _ := range promps {
-		println(field, ":")
-		line, err := reader.Readline()
-		if err != nil {
-			panic(err)
-		}
-		promps[field] = line
-	}
+func (book *Book) CreateContact(params map[string]string) {
 	book.Contacts = append(book.Contacts, &contact.Contact{
-		Name: promps["Nom"],
-		Email: promps["Adresse email"],
-		Address: promps["Adresse physique"],
-		Phone: promps["Numéro de téléphone"],
+		Name: params["Name"],
+		Email: params["Email"],
+		Address: params["Address"],
+		Phone: params["Phone"],
 	})
-	println("Contact ajouté")
 }
 
-func (book Book) ListAllContacts(withIndex bool) {
-	println("Liste des contact :")
-	println()
+func (book Book) ListAllContacts(withIndex bool) []string {
+	var contacts []string
 	for index, contact := range book.Contacts {
-		fmt.Println(index, ":", contact)
+		var prefix string
+		if withIndex {
+			prefix += fmt.Sprintf("%d : ", index + 1)
+		}
+		contacts = append(contacts, fmt.Sprint(prefix, contact))
 	}
+	return contacts
 }
