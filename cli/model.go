@@ -1,3 +1,4 @@
+// The cli package contains all the command line interactions features
 package cli
 
 import (
@@ -5,11 +6,13 @@ import (
 	"github.com/exybore/go-address-book/book"
 )
 
+// The structure for the command line interface
 type Cli struct {
 	Book   book.Book
 	Reader *readline.Instance
 }
 
+// Returns an instance of the Cli structure
 func NewInstance(book book.Book) (Cli, error) {
 	reader, err := readline.New("> ")
 	if err != nil {

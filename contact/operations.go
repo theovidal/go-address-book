@@ -5,6 +5,7 @@ import (
 	"github.com/gookit/color"
 )
 
+// Displays the contact as a readable string
 func (contact Contact) String() string {
 	var final string
 

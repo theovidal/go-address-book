@@ -4,6 +4,7 @@ import (
 	"strconv"
 )
 
+// Displays and loops over the menu in the command line interface
 func (instance Cli) Menu() {
 	println("Ouverture du carnet d'adresses")
 

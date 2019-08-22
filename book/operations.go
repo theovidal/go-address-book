@@ -8,6 +8,7 @@ import (
 	"github.com/gocarina/gocsv"
 )
 
+// Saves the address book into the file
 func (book Book) Save() {
 	err := os.Truncate("book.csv", 0)
 	if err != nil {
@@ -21,6 +22,7 @@ func (book Book) Save() {
 	}
 }
 
+// Creates a contact and adds it into the book
 func (book *Book) CreateContact(params map[string]string) {
 	book.Contacts = append(book.Contacts, &contact.Contact{
 		Name: params["Name"],
@@ -30,11 +32,13 @@ func (book *Book) CreateContact(params map[string]string) {
 	})
 }
 
+// Deletes a contact from the book
 func (book *Book) DeleteContact(index int) {
 	index -= 1
 	book.Contacts = append(book.Contacts[:index], book.Contacts[index+1:]...)
 }
 
+// Lists all the contacts in a pretty way
 func (book Book) ListAllContacts(withIndex bool) []string {
 	var contacts []string
 	for index, contact := range book.Contacts {

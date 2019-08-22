@@ -2,6 +2,7 @@ package cli
 
 import "strconv"
 
+// Deletes a contact using the command line interface
 func (instance *Cli) Delete() {
 	println("Indiquez le numéro du contact à supprimer :")
 	println("0 : annuler l'opération")

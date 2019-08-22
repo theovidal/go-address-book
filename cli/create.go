@@ -1,5 +1,6 @@
 package cli
 
+// Creates a contact using the command line interface
 func (instance *Cli) Create() {
 	promps := map[string]string{
 		"Nom": "",
