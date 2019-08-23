@@ -1,0 +1,27 @@
+{
+  "actions": "\"Actions :\"",
+  "list": "Lister les contacts",
+  "create": "Ajouter un contact",
+  "update": "Modifier un contact",
+  "delete": "Supprimer un contact",
+  "close": "Fermer le carnet",
+
+  "opening": "Ouverture du carnet d'adresses",
+  "closing": "Fermeture du carnet d'adresses",
+
+  "contactsListing": "Liste des contact :",
+  "contactAdding": "Ajout d'un nouveau contact :",
+  "contactAdded": "Contact ajouté",
+  "contactDeleting": "Indiquez le numéro du contact à supprimer :",
+  "contactDeleted": "Contact supprimé",
+
+  "cancel": "\"0 : annuler l'opération\"",
+  "canceling": "Annulation de l'opération",
+
+  "unknownChoice": "\"Choix inconnu. Veuillez réessayer.\"",
+
+  "name": "Nom",
+  "email": "Adresse email",
+  "address": "Adresse physique",
+  "phone": "Numéro de téléphone"
+}
