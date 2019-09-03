@@ -1,4 +1,4 @@
-Actions = "\"Actions :\""
+Actions = "Actions :"
 List = "List contacts"
 Create = "Add new contact"
 Update = "Update one contact"
@@ -12,12 +12,12 @@ ContactsListing = "Contacts list :"
 ContactAdding = "Adding a new contact :"
 ContactAdded = "Added {{.Name}}"
 ContactDeleting = "Indicate the number of the contact to delete :"
-ContactDeleting = "Deleted contact"
+ContactDeleted = "Deleted contact"
 
-Cancel = "\"0  = cancel operation\""
+Cancel = "0  = cancel operation"
 Canceling = "Canceling the operation"
 
-UnknownChoice = "\"Unknown choice. Please retry.\""
+UnknownChoice = "Unknown choice. Please retry."
 
 Name = "Name"
 Email = "Email address"

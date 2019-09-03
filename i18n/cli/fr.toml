@@ -1,4 +1,4 @@
-Actions = "\"Actions :\""
+Actions = "Actions :"
 List = "Lister les contacts"
 Create = "Ajouter un contact"
 Update = "Modifier un contact"
@@ -11,13 +11,13 @@ Closing = "Fermeture du carnet d'adresses"
 ContactsListing = "Liste des contact :"
 ContactAdding = "Ajout d'un nouveau contact :"
 ContactAdded = "{{.Name}} ajouté"
-ContactDeleting = "Indiquez le numéro du contact à supprimer :",
+ContactDeleting = "Indiquez le numéro du contact à supprimer :"
 contactDeleted = "Contact supprimé"
 
-Cancel = "\"0  = annuler l'opération\""
+Cancel = "0  = annuler l'opération"
 Canceling = "Annulation de l'opération"
 
-UnknownChoice = "\"Choix inconnu. Veuillez réessayer.\""
+UnknownChoice = "Choix inconnu. Veuillez réessayer."
 
 Name = "Nom"
 Email = "Adresse email"
