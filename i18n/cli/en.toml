@@ -1,0 +1,25 @@
+Actions = "\"Actions :\""
+List = "List contacts"
+Create = "Add new contact"
+Update = "Update one contact"
+Delete = "Delete one contact"
+Close = "Close the book"
+
+Opening = "Opening the address book"
+Closing = "Closing the address book"
+
+ContactsListing = "Contacts list :"
+ContactAdding = "Adding a new contact :"
+ContactAdded = "Added {{.Name}}"
+ContactDeleting = "Indicate the number of the contact to delete :"
+ContactDeleting = "Deleted contact"
+
+Cancel = "\"0  = cancel operation\""
+Canceling = "Canceling the operation"
+
+UnknownChoice = "\"Unknown choice. Please retry.\""
+
+Name = "Name"
+Email = "Email address"
+Address = "Physical address"
+Phone = "Telephone number"
