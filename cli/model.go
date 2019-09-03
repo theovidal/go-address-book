@@ -19,28 +19,29 @@ type Cli struct {
 }
 
 // Returns an instance of the Cli structure
-func NewInstance(book book.Book, conf config.Config) (Cli, error) {
+func NewInstance(book book.Book, conf config.Config) (cli Cli, err error) {
 	reader, err := readline.New("> ")
 	if err != nil {
-		return Cli{}, err
+		return
 	}
 
 	bundle := i18n.NewBundle(language.English)
 	bundle.RegisterUnmarshalFunc("toml", toml.Unmarshal)
 
 	if _, err = bundle.LoadMessageFile("i18n/cli/en.toml"); err != nil {
-		return Cli{}, err
+		return
 	}
 	if _, err = bundle.LoadMessageFile("i18n/cli/fr.toml"); err != nil {
-		return Cli{}, err
+		return
 	}
 
 	localizer := i18n.NewLocalizer(bundle, conf.Locale)
 
-	return Cli{
-		Book: book,
-		Reader: reader,
-		Config: conf,
+	cli = Cli{
+		Book:      book,
+		Reader:    reader,
+		Config:    conf,
 		Localizer: localizer,
-	}, nil
+	}
+	return
 }
