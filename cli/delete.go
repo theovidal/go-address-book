@@ -1,11 +1,28 @@
 package cli
 
-import "strconv"
+import (
+	"github.com/nicksnyder/go-i18n/v2/i18n"
+	"strconv"
+)
 
 // Deletes a contact using the command line interface
 func (instance *Cli) Delete() {
-	println("Indiquez le numéro du contact à supprimer :")
-	println("0 : annuler l'opération")
+	deletingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "ContactsDeleting",
+	})
+	deletedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "ContactDeleted",
+	})
+
+	cancelString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Cancel",
+	})
+	cancelingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Canceling",
+	})
+
+	println(deletingString)
+	println(cancelString)
 	for _, contact := range instance.Book.ListAllContacts(true) {
 		print(contact)
 	}
@@ -20,10 +37,10 @@ func (instance *Cli) Delete() {
 	}
 
 	if choice == 0 {
-		println("Annulation de l'opération")
+		println(cancelingString)
 		return
 	}
 
 	instance.Book.DeleteContact(choice)
-	println("Contact supprimé")
+	println(deletedString)
 }

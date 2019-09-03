@@ -1,24 +1,47 @@
 package cli
 
 import (
+	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"strconv"
 )
 
 // Displays and loops over the menu in the command line interface
 func (instance Cli) Menu() {
-	println("Ouverture du carnet d'adresses")
+	openingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Opening",
+	})
+	println(openingString)
+
+	listString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "List",
+	})
+	createString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Create",
+	})
+	updateString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Update",
+	})
+	deleteString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Delete",
+	})
+	closeString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Close",
+	})
 
 	actions := []string{
-		"Lister les contact",
-		"Ajouter un contact",
-		"Modifier un contact",
-		"Supprimer un contact",
-		"Fermer le carnet",
+		listString,
+		createString,
+		updateString,
+		deleteString,
+		closeString,
 	}
 
 	quit := false
 	for !quit {
-		println("Actions :")
+		actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+      MessageID: "Actions",
+	  })
+		println(actionsString)
 		for index, action := range actions {
 			println(index+1, ":", action)
 		}
@@ -43,11 +66,17 @@ func (instance Cli) Menu() {
 		case 5:
 			quit = true
 		default:
-			println("Choix inconnu. Veuillez réessayer.")
+			unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+        MessageID: "UnknownChoice",
+	  })
+			println(unknownChoiceString)
 		}
 	}
 
-	println("Fermeture du carnet d'adresses")
+	closingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+    MessageID: "Closing",
+	})
+	println(closingString)
 	instance.Book.Save()
 	instance.Reader.Close()
 }
