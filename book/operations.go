@@ -2,27 +2,23 @@ package book
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	"github.com/exybore/go-address-book/contact"
-	"github.com/gocarina/gocsv"
+	"gopkg.in/yaml.v2"
 )
 
 // Initializes a Book structure with all the contacts
 func New() (book Book, err error) {
-	file, err := os.OpenFile("book.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	data, err := ioutil.ReadFile("book.yml")
 	if err != nil {
 		return
 	}
 
 	var contacts []*contact.Contact
 
-	if err = gocsv.UnmarshalFile(file, &contacts); err != nil {
-		return
-	}
-
-	err = file.Close()
-	if err != nil {
+	if err = yaml.Unmarshal(data, &contacts); err != nil {
 		return
 	}
 
@@ -32,13 +28,18 @@ func New() (book Book, err error) {
 
 // Saves the address book into the file
 func (book Book) Save() (err error) {
-	err = os.Truncate("book.csv", 0)
+	err = os.Truncate("book.yml", 0)
 	if err != nil {
 		return
 	}
 
-	file, _ := os.OpenFile("book.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
-	err = gocsv.MarshalFile(&book.Contacts, file)
+	file, _ := os.OpenFile("book.yml", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	data, err := yaml.Marshal(&book.Contacts)
+	if err != nil {
+		return
+	}
+
+	_, err = file.Write(data)
 	if err != nil {
 		return
 	}
