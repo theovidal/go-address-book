@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Displays and loops over the menu in the command line interface
+// Menu displays and loops over the menu in the command line interface
 func (instance Cli) Menu() {
 	openingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
     MessageID: "Opening",

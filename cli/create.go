@@ -2,7 +2,7 @@ package cli
 
 import "github.com/nicksnyder/go-i18n/v2/i18n"
 
-// Creates a contact using the command line interface
+// Create prompts the user to add a contact using the command line interface
 func (instance *Cli) Create() {
 	nameString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
     MessageID: "Name",

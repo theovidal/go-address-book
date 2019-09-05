@@ -9,7 +9,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// Initializes a Book structure with all the contacts
+// New initializes a Book structure with all the contacts
 func New() (book Book, err error) {
 	data, err := ioutil.ReadFile("book.yml")
 	if err != nil {
@@ -26,7 +26,7 @@ func New() (book Book, err error) {
 	return
 }
 
-// Saves the address book into the file
+// Save writes the address book into the appropriate file
 func (book Book) Save() (err error) {
 	err = os.Truncate("book.yml", 0)
 	if err != nil {
@@ -48,7 +48,7 @@ func (book Book) Save() (err error) {
 	return
 }
 
-// Creates a contact and adds it into the book
+// CreateContact add a new contact into the book
 func (book *Book) CreateContact(params map[string]string) {
 	book.Contacts = append(book.Contacts, &contact.Contact{
 		Name: params["Name"],
@@ -58,13 +58,13 @@ func (book *Book) CreateContact(params map[string]string) {
 	})
 }
 
-// Deletes a contact from the book
+// DeleteContact removes a contact from the book
 func (book *Book) DeleteContact(index int) {
 	index -= 1
 	book.Contacts = append(book.Contacts[:index], book.Contacts[index+1:]...)
 }
 
-// Lists all the contacts in a pretty way
+// ListAllContacts returns a list of all the contacts in a pretty way
 func (book Book) ListAllContacts(withIndex bool) []string {
 	var contacts []string
 	for index, actualContact := range book.Contacts {

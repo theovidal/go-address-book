@@ -1,4 +1,4 @@
-// The cli package contains all the command line interactions features
+// Package cli contains all the command line interactions features
 package cli
 
 import (
@@ -10,7 +10,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-// The structure for the command line interface
+// Cli structure represents the command line interface
 type Cli struct {
 	Book        book.Book
 	Reader      *readline.Instance
@@ -18,7 +18,7 @@ type Cli struct {
 	Localizer   *i18n.Localizer
 }
 
-// Returns an instance of the Cli structure
+// NewInstance returns an instance of the Cli structure
 func NewInstance(book book.Book, conf config.Config) (cli Cli, err error) {
 	reader, err := readline.New("> ")
 	if err != nil {
