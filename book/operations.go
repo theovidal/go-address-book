@@ -51,10 +51,10 @@ func (book Book) Save() (err error) {
 // CreateContact add a new contact into the book
 func (book *Book) CreateContact(params map[string]string) {
 	book.Contacts = append(book.Contacts, &contact.Contact{
-		Name: params["Name"],
-		Email: params["Email"],
+		Name:    params["Name"],
+		Email:   params["Email"],
 		Address: params["Address"],
-		Phone: params["Phone"],
+		Phone:   params["Phone"],
 	})
 }
 
@@ -70,7 +70,7 @@ func (book Book) ListAllContacts(withIndex bool) []string {
 	for index, actualContact := range book.Contacts {
 		var prefix string
 		if withIndex {
-			prefix += fmt.Sprintf("%d : ", index + 1)
+			prefix += fmt.Sprintf("%d : ", index+1)
 		}
 		contacts = append(contacts, fmt.Sprint(prefix, actualContact))
 	}

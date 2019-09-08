@@ -12,10 +12,10 @@ import (
 
 // Cli structure represents the command line interface
 type Cli struct {
-	Book        book.Book
-	Reader      *readline.Instance
-	Config      config.Config
-	Localizer   *i18n.Localizer
+	Book      book.Book
+	Reader    *readline.Instance
+	Config    config.Config
+	Localizer *i18n.Localizer
 }
 
 // NewInstance returns an instance of the Cli structure

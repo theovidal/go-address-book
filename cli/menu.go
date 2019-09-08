@@ -8,24 +8,24 @@ import (
 // Menu displays and loops over the menu in the command line interface
 func (instance Cli) Menu() {
 	openingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Opening",
+		MessageID: "Opening",
 	})
 	println(openingString)
 
 	listString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "List",
+		MessageID: "List",
 	})
 	createString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Create",
+		MessageID: "Create",
 	})
 	updateString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Update",
+		MessageID: "Update",
 	})
 	deleteString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Delete",
+		MessageID: "Delete",
 	})
 	closeString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Close",
+		MessageID: "Close",
 	})
 
 	actions := []string{
@@ -39,8 +39,8 @@ func (instance Cli) Menu() {
 	quit := false
 	for !quit {
 		actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-      MessageID: "Actions",
-	  })
+			MessageID: "Actions",
+		})
 		println(actionsString)
 		for index, action := range actions {
 			println(index+1, ":", action)
@@ -67,14 +67,14 @@ func (instance Cli) Menu() {
 			quit = true
 		default:
 			unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-        MessageID: "UnknownChoice",
-	  })
+				MessageID: "UnknownChoice",
+			})
 			println(unknownChoiceString)
 		}
 	}
 
 	closingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Closing",
+		MessageID: "Closing",
 	})
 	println(closingString)
 	instance.Book.Save()

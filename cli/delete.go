@@ -8,17 +8,17 @@ import (
 // Delete prompts the user to remove a contact using the command line interface
 func (instance *Cli) Delete() {
 	deletingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "ContactsDeleting",
+		MessageID: "ContactsDeleting",
 	})
 	deletedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "ContactDeleted",
+		MessageID: "ContactDeleted",
 	})
 
 	cancelString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Cancel",
+		MessageID: "Cancel",
 	})
 	cancelingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Canceling",
+		MessageID: "Canceling",
 	})
 
 	println(deletingString)

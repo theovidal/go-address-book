@@ -5,51 +5,51 @@ import "github.com/nicksnyder/go-i18n/v2/i18n"
 // Create prompts the user to add a contact using the command line interface
 func (instance *Cli) Create() {
 	nameString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Name",
+		MessageID: "Name",
 	})
 	emailString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Email",
+		MessageID: "Email",
 	})
 	addressString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Address",
+		MessageID: "Address",
 	})
 	phoneString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "Phone",
+		MessageID: "Phone",
 	})
 
-	promps := map[string]string{
-		nameString: "",
-		emailString: "",
+	prompts := map[string]string{
+		nameString:    "",
+		emailString:   "",
 		addressString: "",
-		phoneString: "",
+		phoneString:   "",
 	}
 
 	addingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "ContactAdding",
+		MessageID: "ContactAdding",
 	})
 	println(addingString)
-	for field, _ := range promps {
+	for field := range prompts {
 		println(field, ":")
 		line, err := instance.Reader.Readline()
 		if err != nil {
 			panic(err)
 		}
-		promps[field] = line
+		prompts[field] = line
 	}
 
 	params := map[string]string{
-		"Name": promps[nameString],
-		"Email": promps[emailString],
-		"Address": promps[addressString],
-		"Phone": promps[phoneString],
+		"Name":    prompts[nameString],
+		"Email":   prompts[emailString],
+		"Address": prompts[addressString],
+		"Phone":   prompts[phoneString],
 	}
 	instance.Book.CreateContact(params)
 
 	addedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-    MessageID: "ContactAdded",
-    TemplateData: map[string]interface{}{
-    	"Name": promps[nameString],
-    },
+		MessageID: "ContactAdded",
+		TemplateData: map[string]interface{}{
+			"Name": prompts[nameString],
+		},
 	})
 	println(addedString)
 }
