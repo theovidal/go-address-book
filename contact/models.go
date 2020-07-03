@@ -10,15 +10,15 @@ type Contact struct {
 	// The full name of the contact
 	Name string
 	// One or more email addresses
-	Emails map[string]string
+	Emails []TypeValue
 	// One or more physical addresses
-	Addresses map[string]Address
+	Addresses []Address
 	// One or more phone numbers
-	Phones map[string]string
+	Phones []TypeValue
 	// One or more Internet links
 	WebLinks []string
 	// One or more accounts on Internet
-	Accounts map[string]string
+	Accounts []TypeValue
 	// One or more associated contacts
 	AssociatedContacts []int
 	// Some texts that user can add to the contact
@@ -36,6 +36,13 @@ type Address struct {
 	State   string
 	Zip     string
 	Country string
+}
+
+type TypeValue struct {
+	// The type of the field : personal, professional...
+	Type string
+	// The value of this piece of information
+	Value string
 }
 
 type Event struct {

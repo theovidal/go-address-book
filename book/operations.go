@@ -49,12 +49,10 @@ func (book Book) Save() (err error) {
 }
 
 // CreateContact add a new contact into the book
-func (book *Book) CreateContact(params map[string]string) {
+func (book *Book) CreateContact(name string) {
 	book.Contacts = append(book.Contacts, &contact.Contact{
-		Name:    params["Name"],
-		Email:   params["Email"],
-		Address: params["Address"],
-		Phone:   params["Phone"],
+		Name: name,
+		UUID: contact.GenerateUUID(),
 	})
 }
 
