@@ -41,6 +41,9 @@ func (instance Cli) Menu() {
 		actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
 			MessageID: "Actions",
 		})
+		unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+			MessageID: "UnknownChoice",
+		})
 		println(actionsString)
 		for index, action := range actions {
 			println(index+1, ":", action)
@@ -51,9 +54,14 @@ func (instance Cli) Menu() {
 			panic(err)
 		}
 
+		if line == "" {
+			line = "1"
+		}
+
 		chosen, err := strconv.Atoi(line)
 		if err != nil {
-			panic(err)
+			println(unknownChoiceString)
+			continue
 		}
 
 		switch chosen {
@@ -66,9 +74,6 @@ func (instance Cli) Menu() {
 		case 5:
 			quit = true
 		default:
-			unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-				MessageID: "UnknownChoice",
-			})
 			println(unknownChoiceString)
 		}
 	}
