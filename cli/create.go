@@ -1,16 +1,10 @@
 package cli
 
-import "github.com/nicksnyder/go-i18n/v2/i18n"
-
 // Create prompts the user to add a contact using the command line interface
 func (instance *Cli) Create() {
-	nameString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Name",
-	})
+	nameString, _ := instance.I18n.T("Name", nil)
 
-	addingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactAdding",
-	})
+	addingString, _ := instance.I18n.T("ContactAdding", nil)
 	println(addingString)
 	println(nameString, ":")
 	line, err := instance.Reader.Readline()
@@ -20,11 +14,8 @@ func (instance *Cli) Create() {
 
 	instance.Book.CreateContact(line)
 
-	addedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactAdded",
-		TemplateData: map[string]interface{}{
-			"Name": line,
-		},
+	addedString, _ := instance.I18n.T("ContactAdded", map[string]interface{}{
+		"Name": line,
 	})
 	println(addedString)
 }

@@ -1,38 +1,19 @@
 package cli
 
-import (
-	"github.com/AlecAivazis/survey/v2"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
-)
+import "github.com/AlecAivazis/survey/v2"
 
 // Menu displays and loops over the menu in the command line interface
 func (instance Cli) Menu() {
-	openingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Opening",
-	})
+	openingString, _ := instance.I18n.T("Opening", nil)
 	println(openingString)
 
-	actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Actions",
-	})
-	listString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "List",
-	})
-	createString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Create",
-	})
-	updateString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Update",
-	})
-	deleteString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Delete",
-	})
-	closeString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Close",
-	})
-	unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "UnknownChoice",
-	})
+	actionsString, _ := instance.I18n.T("Actions", nil)
+	listString, _ := instance.I18n.T("List", nil)
+	createString, _ := instance.I18n.T("Create", nil)
+	updateString, _ := instance.I18n.T("Update", nil)
+	deleteString, _ := instance.I18n.T("Delete", nil)
+	closeString, _ := instance.I18n.T("Close", nil)
+	unknownChoiceString, _ := instance.I18n.T("UnknownChoice", nil)
 
 	var choice int
 	prompt := &survey.Select{
@@ -64,10 +45,8 @@ func (instance Cli) Menu() {
 		}
 	}
 
-	closingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Closing",
-	})
+	closingString, _ := instance.I18n.T("Closing", nil)
 	println(closingString)
-	instance.Book.Save()
-	instance.Reader.Close()
+	_ = instance.Book.Save()
+	_ = instance.Reader.Close()
 }

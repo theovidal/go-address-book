@@ -10,7 +10,7 @@ import (
 func (contact Contact) String() string {
 	var final string
 
-	final += color.Bold.Sprintf("%s <%s>\n", contact.Name, contact.Emails[0].Value)
+	final += color.Bold.Sprintf("%s\n", contact.Name)
 	// final += fmt.Sprintf("- %s : %s\n", contact.Address, contact.Phone)
 	final += fmt.Sprintf("- %s\n", contact.Phones)
 

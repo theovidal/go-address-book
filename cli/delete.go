@@ -1,19 +1,12 @@
 package cli
 
-import (
-	"github.com/AlecAivazis/survey/v2"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
-)
+import "github.com/AlecAivazis/survey/v2"
 
 // Delete prompts the user to remove a contact using the command line interface
 func (instance *Cli) Delete() {
-	deletingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactDeleting",
-	})
+	deletingString, _ := instance.I18n.T("ContactDeleting", nil)
 
-	cancelString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Cancel",
-	})
+	cancelString, _ := instance.I18n.T("Cancel", nil)
 
 	choices := []string{cancelString}
 
@@ -32,11 +25,8 @@ func (instance *Cli) Delete() {
 		return
 	}
 
-	deletedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactDeleted",
-		TemplateData: map[string]interface{}{
-			"Name": choices[choice],
-		},
+	deletedString, _ := instance.I18n.T("ContactDeleted", map[string]interface{}{
+		"Name": choices[choice],
 	})
 
 	instance.Book.DeleteContact(choice)
