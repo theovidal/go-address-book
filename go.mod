@@ -1,8 +1,9 @@
 module github.com/exybore/go-address-book
 
-go 1.12
+go 1.13
 
 require (
+	github.com/AlecAivazis/survey/v2 v2.0.8
 	github.com/BurntSushi/toml v0.3.1
 	github.com/chzyer/logex v1.1.10 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e

@@ -1,8 +1,8 @@
 package cli
 
 import (
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
-	"strconv"
 )
 
 // Menu displays and loops over the menu in the command line interface
@@ -12,6 +12,9 @@ func (instance Cli) Menu() {
 	})
 	println(openingString)
 
+	actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+		MessageID: "Actions",
+	})
 	listString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
 		MessageID: "List",
 	})
@@ -27,51 +30,34 @@ func (instance Cli) Menu() {
 	closeString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
 		MessageID: "Close",
 	})
+	unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+		MessageID: "UnknownChoice",
+	})
 
-	actions := []string{
-		listString,
-		createString,
-		updateString,
-		deleteString,
-		closeString,
+	var choice int
+	prompt := &survey.Select{
+		Message: actionsString,
+		Options: []string{
+			listString,
+			createString,
+			updateString,
+			deleteString,
+			closeString,
+		},
 	}
 
 	quit := false
 	for !quit {
-		actionsString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-			MessageID: "Actions",
-		})
-		unknownChoiceString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-			MessageID: "UnknownChoice",
-		})
-		println(actionsString)
-		for index, action := range actions {
-			println(index+1, ":", action)
-		}
+		_ = survey.AskOne(prompt, &choice)
 
-		line, err := instance.Reader.Readline()
-		if err != nil {
-			panic(err)
-		}
-
-		if line == "" {
-			line = "1"
-		}
-
-		chosen, err := strconv.Atoi(line)
-		if err != nil {
-			println(unknownChoiceString)
-			continue
-		}
-
-		switch chosen {
-		case 1:
+		switch choice {
+		case 0:
 			instance.List()
-		case 2:
+		case 1:
 			instance.Create()
-		case 4:
+		case 3:
 			instance.Delete()
-		case 5:
+		case 4:
 			quit = true
 		default:
 			println(unknownChoiceString)

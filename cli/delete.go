@@ -1,45 +1,43 @@
 package cli
 
 import (
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
-	"strconv"
 )
 
 // Delete prompts the user to remove a contact using the command line interface
 func (instance *Cli) Delete() {
 	deletingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactsDeleting",
-	})
-	deletedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "ContactDeleted",
+		MessageID: "ContactDeleting",
 	})
 
 	cancelString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
 		MessageID: "Cancel",
 	})
-	cancelingString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
-		MessageID: "Canceling",
-	})
 
-	println(deletingString)
-	println(cancelString)
-	for _, contact := range instance.Book.ListAllContacts(true) {
-		print(contact)
-	}
-	line, err := instance.Reader.Readline()
-	if err != nil {
-		panic(err)
+	choices := []string{cancelString}
+
+	for _, contact := range instance.Book.Contacts {
+		choices = append(choices, contact.Name)
 	}
 
-	choice, err := strconv.Atoi(line)
-	if err != nil {
-		panic(err)
+	var choice int
+	prompt := &survey.Select{
+		Message: deletingString,
+		Options: choices,
 	}
+	_ = survey.AskOne(prompt, &choice)
 
 	if choice == 0 {
-		println(cancelingString)
 		return
 	}
+
+	deletedString, _ := instance.Localizer.Localize(&i18n.LocalizeConfig{
+		MessageID: "ContactDeleted",
+		TemplateData: map[string]interface{}{
+			"Name": choices[choice],
+		},
+	})
 
 	instance.Book.DeleteContact(choice)
 	println(deletedString)
